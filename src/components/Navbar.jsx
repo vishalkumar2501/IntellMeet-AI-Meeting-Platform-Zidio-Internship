@@ -29,3 +29,16 @@ function Navbar() {
           border: "none"
         }}
       />
+
+      {/* Buttons */}
+      <div>
+        <button style={{
+          padding: "8px 15px",
+          marginRight: "10px",
+          background: "white",
+          color: "#2874f0",
+          border: "none",
+          cursor: "pointer"
+        }}>
+          Login
+        </button>
