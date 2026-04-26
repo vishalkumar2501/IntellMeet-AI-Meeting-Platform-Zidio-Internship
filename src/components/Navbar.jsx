@@ -53,3 +53,9 @@ function Navbar() {
           Cart
         </button>
       </div>
+
+    </div>
+  );
+}
+
+export default Navbar;
