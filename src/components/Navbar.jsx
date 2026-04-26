@@ -1,14 +1,14 @@
+import { useState } from "react";
+
 function Navbar() {
+  const [search, setSearch] = useState("");
+
   return (
     <div style={{
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
       background: "#2874f0",
-      color: "white",
-      padding: "10px",
-      fontSize: "20px"
+      padding: "10px 20px",
+      color: "white"
     }}>
-      Flipkart Clone
-    </div>
-  );
-}
-
-export default Navbar;
