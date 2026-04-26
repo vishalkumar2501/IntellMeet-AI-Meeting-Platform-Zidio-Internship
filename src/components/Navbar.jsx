@@ -42,3 +42,14 @@ function Navbar() {
         }}>
           Login
         </button>
+
+        <button style={{
+          padding: "8px 15px",
+          background: "white",
+          color: "#2874f0",
+          border: "none",
+          cursor: "pointer"
+        }}>
+          Cart
+        </button>
+      </div>
