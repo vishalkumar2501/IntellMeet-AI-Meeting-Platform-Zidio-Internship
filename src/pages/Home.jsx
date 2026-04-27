@@ -4,55 +4,83 @@ function Home() {
       id: 1,
       name: "iPhone 14",
       price: "₹70,000",
-      image: "https://via.placeholder.com/150"
+      image: "https://m.media-amazon.com/images/I/61bK6PMOC3L._SX679_.jpg"
     },
     {
       id: 2,
-      name: "Samsung Galaxy",
+      name: "Samsung Galaxy S21",
       price: "₹50,000",
-      image: "https://via.placeholder.com/150"
+      image: "https://m.media-amazon.com/images/I/71z2dhY5lFL._SX679_.jpg"
     },
     {
       id: 3,
-      name: "Laptop",
+      name: "HP Laptop",
       price: "₹80,000",
-      image: "https://via.placeholder.com/150"
+      image: "https://m.media-amazon.com/images/I/71TPda7cwUL._SX679_.jpg"
     },
     {
       id: 4,
-      name: "Headphones",
+      name: "Boat Headphones",
       price: "₹2,000",
-      image: "https://via.placeholder.com/150"
+      image: "https://m.media-amazon.com/images/I/61u1VALn6JL._SX679_.jpg"
     }
   ];
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div style={{ padding: "20px", background: "#f1f3f6" }}>
       <h2>Products</h2>
 
-      {/* Grid */}
       <div style={{
         display: "grid",
         gridTemplateColumns: "repeat(4, 1fr)",
         gap: "20px"
       }}>
         {products.map((item) => (
-          <div key={item.id} style={{
-            border: "1px solid #ddd",
-            padding: "10px",
-            textAlign: "center"
-          }}>
-            <img src={item.image} alt={item.name} />
+          <div key={item.id}
+            style={{
+              background: "white",
+              padding: "15px",
+              textAlign: "center",
+              borderRadius: "5px",
+              transition: "0.3s",
+              cursor: "pointer"
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "scale(1.05)";
+              e.currentTarget.style.boxShadow = "0 0 10px rgba(0,0,0,0.2)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "scale(1)";
+              e.currentTarget.style.boxShadow = "none";
+            }}
+          >
+            <img
+              src={item.image}
+              alt={item.name}
+              style={{ width: "100%", height: "150px", objectFit: "contain" }}
+            />
+
             <h4>{item.name}</h4>
-            <p>{item.price}</p>
+            <p style={{ color: "green", fontWeight: "bold" }}>
+              {item.price}
+            </p>
 
             <button style={{
-              padding: "5px 10px",
-              background: "#2874f0",
-              color: "white",
-              border: "none"
+              padding: "8px 12px",
+              background: "#ff9f00",
+              border: "none",
+              marginRight: "5px"
             }}>
               Add to Cart
+            </button>
+
+            <button style={{
+              padding: "8px 12px",
+              background: "#fb641b",
+              border: "none",
+              color: "white"
+            }}>
+              Buy Now
             </button>
           </div>
         ))}
