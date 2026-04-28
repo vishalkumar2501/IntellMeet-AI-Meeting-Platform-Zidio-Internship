@@ -88,5 +88,34 @@ function Home() {
     </div>
   );
 }
+function Home({ addToCart }) {
+  const products = [
+    { id: 1, name: "iPhone 14", price: "₹70,000", image: "https://via.placeholder.com/150" },
+    { id: 2, name: "Samsung Galaxy", price: "₹50,000", image: "https://via.placeholder.com/150" }
+  ];
+
+  return (
+    <div style={{ padding: "20px" }}>
+      <h2>Products</h2>
+
+      {products.map((item) => (
+        <div key={item.id} style={{
+          border: "1px solid #ddd",
+          margin: "10px",
+          padding: "10px"
+        }}>
+          <h4>{item.name}</h4>
+          <p>{item.price}</p>
+
+          <button onClick={() => addToCart(item)}>
+            Add to Cart
+          </button>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default Home;
 
 export default Home;
