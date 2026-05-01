@@ -1,6 +1,9 @@
 import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
+import Cart from "./pages/Cart";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -10,10 +13,14 @@ function App() {
   };
 
   return (
-    <div>
+    <BrowserRouter>
       <Navbar cartCount={cart.length} />
-      <Home addToCart={addToCart} />
-    </div>
+
+      <Routes>
+        <Route path="/" element={<Home addToCart={addToCart} />} />
+        <Route path="/cart" element={<Cart cart={cart} />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
