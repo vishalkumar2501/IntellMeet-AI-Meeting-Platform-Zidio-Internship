@@ -1,28 +1,26 @@
-function Navbar({ cartCount }) {
+function Navbar({ cartCount, setSearch }) {
   return (
     <div style={{
       display: "flex",
       justifyContent: "space-between",
       background: "#2874f0",
-      padding: "10px 20px",
+      padding: "10px",
       color: "white"
     }}>
+
       <h2>Flipkart</h2>
 
-      <div>
-        <button style={{
-          marginRight: "10px",
-          padding: "5px 10px"
-        }}>
-          Login
-        </button>
+      {/* 🔍 Search */}
+      <input
+        type="text"
+        placeholder="Search products..."
+        onChange={(e) => setSearch(e.target.value)}
+        style={{ padding: "5px", width: "40%" }}
+      />
 
-        <button style={{
-          padding: "5px 10px"
-        }}>
-          Cart ({cartCount})
-        </button>
-      </div>
+      <button>
+        Cart ({cartCount})
+      </button>
     </div>
   );
 }
