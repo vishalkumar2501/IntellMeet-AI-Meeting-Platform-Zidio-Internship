@@ -1,13 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-  const [cart, setCart] = useState([]);
 
-  // ✅ Correct addToCart (with quantity)
+  // ✅ Load from localStorage
+  const [cart, setCart] = useState(() => {
+    const data = localStorage.getItem("cart");
+    return data ? JSON.parse(data) : [];
+  });
+
+  // ✅ Save to localStorage (jab cart change ho)
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
   const addToCart = (product) => {
     const exist = cart.find(item => item.id === product.id);
 
@@ -22,7 +31,6 @@ function App() {
     }
   };
 
-  // ✅ Remove by id (better)
   const removeFromCart = (id) => {
     setCart(cart.filter(item => item.id !== id));
   };
