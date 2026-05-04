@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ProductDetail from "./pages/ProductDetail";
 
 function App() {
 
@@ -46,7 +47,9 @@ function App() {
         } />
       </Routes>
     </BrowserRouter>
+    
   );
+  <Route path="/product/:id" element={<ProductDetail />} />
 }
 
 export default App;
