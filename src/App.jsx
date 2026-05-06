@@ -51,6 +51,10 @@ function App() {
     
   );
   <Route path="/product/:id" element={<ProductDetail />} />
+  
 }
+<Route path="/product/:id" element={
+  <ProductDetail addToCart={addToCart} />
+} />
 
 export default App;
