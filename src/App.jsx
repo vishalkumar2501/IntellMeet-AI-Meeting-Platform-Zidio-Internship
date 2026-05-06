@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
+import ProductDetail from "./pages/ProductDetail";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProductDetail from "./pages/ProductDetail";
 
