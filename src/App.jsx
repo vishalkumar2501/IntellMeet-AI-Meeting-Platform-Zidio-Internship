@@ -53,6 +53,21 @@ function App() {
     
   );
   <Route path="/product/:id" element={<ProductDetail />} />
+  const addToCart = (product) => {
+  const exist = cart.find(item => item.id === product.id);
+
+  if (exist) {
+    setCart(cart.map(item =>
+      item.id === product.id
+        ? { ...item, qty: item.qty + 1 }
+        : item
+    ));
+  } else {
+    setCart([...cart, { ...product, qty: 1 }]);
+  }
+
+  toast.success("Item added to cart!");
+};
   
 }
 <Route path="/product/:id" element={

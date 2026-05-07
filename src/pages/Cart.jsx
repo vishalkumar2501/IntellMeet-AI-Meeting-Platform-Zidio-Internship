@@ -24,6 +24,7 @@ function Cart({ cart, removeFromCart }) {
           ))}
 
           <h3>Total: ₹{total}</h3>
+          toast.success("Item added to cart!");
         </>
       )}
     </div>
