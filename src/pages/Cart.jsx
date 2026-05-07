@@ -27,7 +27,9 @@ function Cart({ cart, removeFromCart }) {
           toast.success("Item added to cart!");
         </>
       )}
+      <ToastContainer />
     </div>
+    
   );
 }
 

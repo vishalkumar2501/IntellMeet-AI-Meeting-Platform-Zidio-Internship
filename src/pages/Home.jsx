@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Home({ addToCart, search }) {
 
