@@ -1,26 +1,34 @@
-function Navbar({ cartCount, setSearch }) {
+import { Link } from "react-router-dom";
+
+function Navbar({ cartCount, toggleDarkMode, darkMode }) {
   return (
     <div style={{
       display: "flex",
       justifyContent: "space-between",
-      background: "#2874f0",
+      background: darkMode ? "#222" : "#2874f0",
       padding: "10px",
       color: "white"
     }}>
 
-      <h2>Flipkart</h2>
+      <Link to="/" style={{ color: "white", textDecoration: "none" }}>
+        <h2>Flipkart</h2>
+      </Link>
 
-      {/* 🔍 Search */}
-      <input
-        type="text"
-        placeholder="Search products..."
-        onChange={(e) => setSearch(e.target.value)}
-        style={{ padding: "5px", width: "40%" }}
-      />
+      <div>
+        <button onClick={toggleDarkMode} style={{
+          marginRight: "10px",
+          padding: "5px"
+        }}>
+          {darkMode ? "Light Mode ☀️" : "Dark Mode 🌙"}
+        </button>
 
-      <button>
-        Cart ({cartCount})
-      </button>
+        <Link to="/cart">
+          <button>
+            Cart ({cartCount})
+          </button>
+        </Link>
+      </div>
+
     </div>
   );
 }
