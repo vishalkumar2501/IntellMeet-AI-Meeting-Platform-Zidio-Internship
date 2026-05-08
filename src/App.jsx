@@ -2,24 +2,18 @@ import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
-import ProductDetail from "./pages/ProductDetail";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ProductDetail from "./pages/ProductDetail";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 function App() {
 
-  // ✅ Load from localStorage
-  const [cart, setCart] = useState(() => {
-    const data = localStorage.getItem("cart");
-    return data ? JSON.parse(data) : [];
-  });
+  const [cart, setCart] = useState([]);
 
-  // ✅ Save to localStorage (jab cart change ho)
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
+  // 🌙 Dark mode state
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
 
   const addToCart = (product) => {
     const exist = cart.find(item => item.id === product.id);
@@ -40,38 +34,32 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
-      <Navbar cartCount={cart.length} />
+    <div style={{
+      background: darkMode ? "#121212" : "#f1f3f6",
+      color: darkMode ? "white" : "black",
+      minHeight: "100vh"
+    }}>
+      <BrowserRouter>
 
-      <Routes>
-        <Route path="/" element={<Home addToCart={addToCart} />} />
-        <Route path="/cart" element={
-          <Cart cart={cart} removeFromCart={removeFromCart} />
-        } />
-      </Routes>
-    </BrowserRouter>
-    
+        <Navbar
+          cartCount={cart.length}
+          toggleDarkMode={toggleDarkMode}
+          darkMode={darkMode}
+        />
+
+        <Routes>
+          <Route path="/" element={
+            <Home addToCart={addToCart} />
+          } />
+
+          <Route path="/cart" element={
+            <Cart cart={cart} removeFromCart={removeFromCart} />
+          } />
+        </Routes>
+
+      </BrowserRouter>
+    </div>
   );
-  <Route path="/product/:id" element={<ProductDetail />} />
-  const addToCart = (product) => {
-  const exist = cart.find(item => item.id === product.id);
-
-  if (exist) {
-    setCart(cart.map(item =>
-      item.id === product.id
-        ? { ...item, qty: item.qty + 1 }
-        : item
-    ));
-  } else {
-    setCart([...cart, { ...product, qty: 1 }]);
-  }
-
-  toast.success("Item added to cart!");
-};
-  
 }
-<Route path="/product/:id" element={
-  <ProductDetail addToCart={addToCart} />
-} />
 
 export default App;
