@@ -1,50 +1,88 @@
-import { useState } from "react";
 import { useEffect, useState } from "react";
 
-function Home({ addToCart, search }) {
+function Home({ addToCart }) {
 
-  const [category, setCategory] = useState("All");
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const products = [
-    { id: 1, name: "iPhone 14", price: "₹70000", category: "Mobile" },
-    { id: 2, name: "Samsung Galaxy", price: "₹50000", category: "Mobile" },
-    { id: 3, name: "HP Laptop", price: "₹80000", category: "Laptop" },
-    { id: 4, name: "Headphones", price: "₹2000", category: "Accessories" }
-  ];
+  // 🔥 Fetch API
+  useEffect(() => {
 
-  // 🔍 Search filter
-  const searchFiltered = products.filter(item =>
-    item.name.toLowerCase().includes(search.toLowerCase())
-  );
+    fetch("https://fakestoreapi.com/products")
+      .then(res => res.json())
+      .then(data => {
+        setProducts(data);
+        setLoading(false);
+      });
 
-  // 🔥 Category filter
-  const finalProducts = searchFiltered.filter(item =>
-    category === "All" ? true : item.category === category
-  );
+  }, []);
+
+  // ⏳ Loading
+  if (loading) {
+    return <h2 style={{ padding: "20px" }}>Loading Products...</h2>;
+  }
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Products</h2>
+    <div style={{
+      padding: "20px",
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+      gap: "20px"
+    }}>
 
-      {/* 🔥 Category Buttons */}
-      <div style={{ marginBottom: "15px" }}>
-        <button onClick={() => setCategory("All")}>All</button>
-        <button onClick={() => setCategory("Mobile")}>Mobile</button>
-        <button onClick={() => setCategory("Laptop")}>Laptop</button>
-        <button onClick={() => setCategory("Accessories")}>Accessories</button>
-      </div>
+      {products.map(item => (
 
-      {/* Products */}
-      {finalProducts.map(item => (
-        <div key={item.id}>
-          <h4>{item.name}</h4>
-          <p>{item.price}</p>
+        <div
+          key={item.id}
+          style={{
+            background: "white",
+            padding: "15px",
+            borderRadius: "10px",
+            textAlign: "center",
+            boxShadow: "0 0 10px rgba(0,0,0,0.1)"
+          }}
+        >
 
-          <button onClick={() => addToCart(item)}>
+          {/* Image */}
+          <img
+            src={item.image}
+            alt={item.title}
+            style={{
+              width: "100%",
+              height: "200px",
+              objectFit: "contain"
+            }}
+          />
+
+          {/* Title */}
+          <h4>
+            {item.title.slice(0, 40)}...
+          </h4>
+
+          {/* Price */}
+          <p style={{
+            color: "green",
+            fontWeight: "bold"
+          }}>
+            ₹ {Math.round(item.price * 80)}
+          </p>
+
+          {/* Button */}
+          <button
+            onClick={() => addToCart(item)}
+            style={{
+              padding: "10px",
+              background: "#ff9f00",
+              border: "none",
+              cursor: "pointer"
+            }}
+          >
             Add to Cart
           </button>
+
         </div>
       ))}
+
     </div>
   );
 }
