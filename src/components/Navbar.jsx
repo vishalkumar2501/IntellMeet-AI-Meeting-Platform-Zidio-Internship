@@ -5,28 +5,65 @@ function Navbar({ cartCount, toggleDarkMode, darkMode }) {
     <div style={{
       display: "flex",
       justifyContent: "space-between",
+      alignItems: "center",
+      flexWrap: "wrap",
       background: darkMode ? "#222" : "#2874f0",
       padding: "10px",
-      color: "white"
+      color: "white",
+      gap: "10px"
     }}>
 
-      <Link to="/" style={{ color: "white", textDecoration: "none" }}>
-        <h2>Flipkart</h2>
+      {/* Logo */}
+      <Link
+        to="/"
+        style={{
+          color: "white",
+          textDecoration: "none"
+        }}
+      >
+        <h2 style={{ margin: 0 }}>Flipkart</h2>
       </Link>
 
-      <div>
-        <button onClick={toggleDarkMode} style={{
-          marginRight: "10px",
-          padding: "5px"
-        }}>
-          {darkMode ? "Light Mode ☀️" : "Dark Mode 🌙"}
+      {/* Search */}
+      <input
+        type="text"
+        placeholder="Search..."
+        style={{
+          flex: "1",
+          minWidth: "200px",
+          padding: "8px",
+          border: "none",
+          borderRadius: "4px"
+        }}
+      />
+
+      {/* Buttons */}
+      <div style={{
+        display: "flex",
+        gap: "10px"
+      }}>
+
+        <button
+          onClick={toggleDarkMode}
+          style={{
+            padding: "8px",
+            border: "none",
+            cursor: "pointer"
+          }}
+        >
+          {darkMode ? "☀️" : "🌙"}
         </button>
 
         <Link to="/cart">
-          <button>
+          <button style={{
+            padding: "8px",
+            border: "none",
+            cursor: "pointer"
+          }}>
             Cart ({cartCount})
           </button>
         </Link>
+
       </div>
 
     </div>
