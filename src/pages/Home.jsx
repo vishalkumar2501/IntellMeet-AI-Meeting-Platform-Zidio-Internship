@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 function Home({ addToCart, search })
+const [selectedCategory, setSelectedCategory] = useState("all");
 
 function Home({ addToCart }) {
 
