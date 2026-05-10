@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+function Home({ addToCart, search })
 
 function Home({ addToCart }) {
 
@@ -16,6 +17,10 @@ function Home({ addToCart }) {
       });
 
   }, []);
+
+  const filteredProducts = products.filter(item =>
+  item.title.toLowerCase().includes(search.toLowerCase())
+);
 
   // ⏳ Loading
   if (loading) {
