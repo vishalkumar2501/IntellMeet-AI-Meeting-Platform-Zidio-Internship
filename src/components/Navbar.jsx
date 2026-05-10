@@ -36,6 +36,18 @@ function Navbar({ cartCount, toggleDarkMode, darkMode }) {
           borderRadius: "4px"
         }}
       />
+      <input
+  type="text"
+  placeholder="Search products..."
+  onChange={(e) => setSearch(e.target.value)}
+  style={{
+    flex: "1",
+    minWidth: "200px",
+    padding: "8px",
+    border: "none",
+    borderRadius: "4px"
+  }}
+/>
 
       {/* Buttons */}
       <div style={{
