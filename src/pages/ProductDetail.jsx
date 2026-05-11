@@ -86,7 +86,62 @@ function ProductDetail({ addToCart }) {
         >
           Add to Cart
         </button>
+<div
+  key={item.id}
+  style={{
+    background: "white",
+    padding: "15px",
+    borderRadius: "10px",
+    textAlign: "center",
+    boxShadow: "0 0 10px rgba(0,0,0,0.1)",
+    transition: "0.3s"
+  }}
+>
 
+  {/* Image */}
+  <img
+    src={item.image}
+    alt={item.title}
+    style={{
+      width: "100%",
+      height: "200px",
+      objectFit: "contain"
+    }}
+  />
+
+  {/* Title */}
+  <h4>
+    {item.title.slice(0, 40)}...
+  </h4>
+
+  {/* Price */}
+  <p style={{
+    color: "green",
+    fontWeight: "bold"
+  }}>
+    ₹ {Math.round(item.price * 80)}
+  </p>
+
+  {/* ⭐ Rating */}
+  <p>
+    ⭐ {item.rating.rate}
+    {" "} ({item.rating.count} reviews)
+  </p>
+
+  {/* Button */}
+  <button
+    onClick={() => addToCart(item)}
+    style={{
+      padding: "10px",
+      background: "#ff9f00",
+      border: "none",
+      cursor: "pointer"
+    }}
+  >
+    Add to Cart
+  </button>
+
+</div>
         <button
           style={{
             padding: "10px 20px",
