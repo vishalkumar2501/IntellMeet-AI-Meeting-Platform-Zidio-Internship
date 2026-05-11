@@ -4,6 +4,11 @@ const [selectedCategory, setSelectedCategory] = useState("all");
 
 function Home({ addToCart }) {
 
+    <p>
+  ⭐ {item.rating.rate}
+  {" "} ({item.rating.count} reviews)
+</p>
+
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
