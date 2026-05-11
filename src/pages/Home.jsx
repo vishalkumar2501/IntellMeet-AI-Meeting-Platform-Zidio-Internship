@@ -85,8 +85,21 @@ function Home({ addToCart }) {
           >
             Add to Cart
           </button>
+<h3>Sort By</h3>
 
+<select
+  onChange={(e) => setSortType(e.target.value)}
+  style={{
+    width: "100%",
+    padding: "8px"
+  }}
+>
+  <option value="">Default</option>
+  <option value="low">Price: Low to High</option>
+  <option value="high">Price: High to Low</option>
+</select>
         </div>
+
       ))}
 
     </div>
