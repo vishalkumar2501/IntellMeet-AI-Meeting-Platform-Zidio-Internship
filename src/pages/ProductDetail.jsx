@@ -141,6 +141,36 @@ function ProductDetail({ addToCart }) {
     Add to Cart
   </button>
 
+  <div style={{
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center"
+}}>
+
+  <button
+    onClick={() => addToCart(item)}
+  >
+    Add to Cart
+  </button>
+
+  <button
+    onClick={() => toggleWishlist(item)}
+    style={{
+      border: "none",
+      background: "none",
+      fontSize: "22px",
+      cursor: "pointer"
+    }}
+  >
+    {
+      wishlist.find(p => p.id === item.id)
+        ? "❤️"
+        : "🤍"
+    }
+  </button>
+
+</div>
+
 </div>
         <button
           style={{
