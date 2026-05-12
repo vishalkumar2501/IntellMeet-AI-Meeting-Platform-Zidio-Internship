@@ -17,6 +17,21 @@ function App() {
     setDarkMode(!darkMode);
   };
 
+  const toggleWishlist = (product) => {
+
+  const exist = wishlist.find(
+    item => item.id === product.id
+  );
+
+  if (exist) {
+    setWishlist(
+      wishlist.filter(item => item.id !== product.id)
+    );
+  } else {
+    setWishlist([...wishlist, product]);
+  }
+};
+
   const addToCart = (product) => {
     const exist = cart.find(item => item.id === product.id);
 
