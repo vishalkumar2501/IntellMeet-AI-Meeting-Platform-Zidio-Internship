@@ -4,6 +4,8 @@ import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+const [wishlist, setWishlist] = useState([]);
+
 function App() {
 
   const [cart, setCart] = useState([]);
